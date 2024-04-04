@@ -1,14 +1,14 @@
 import * as React from 'react';
-import { Text, View, StyleSheet, TextInput, SafeAreaView, TouchableOpacity } from 'react-native';
+import { useEffect, useState } from 'react';
+import { Text, View, StyleSheet, TextInput, Keyboard, TouchableOpacity, TouchableHighlight } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 interface loginProps {}
 
 const login = (props: loginProps) => {
+    const navigation = useNavigation();
     const [emailText, onChangeEmailText] = React.useState('');
     const [passwordText, onChangePasswordText] = React.useState('');
-    const onPress = () => {
-        console.log('pressed')
-    }
 
 
   return (
@@ -20,14 +20,11 @@ const login = (props: loginProps) => {
         <TextInput
             style={styles.input}
             placeholder='Email'
+            onSubmitEditing={Keyboard.dismiss}
             onChangeText={onChangeEmailText}
             value={emailText}
         /> 
-        {/* 
-        
-        handle errors for email and password validation
-        
-        */}
+
 
         <TextInput
             style={styles.input}
@@ -36,12 +33,21 @@ const login = (props: loginProps) => {
             value={passwordText}
         />
 
-        <TouchableOpacity style={styles.button} onPress={onPress}>
+        {/* 
+        
+        handle errors for email and password validation
+        
+        */}
+        
+        <TouchableOpacity style={styles.button}>
             <Text>Submit</Text>
         </TouchableOpacity>
 
         <Text style={styles.subtitle}>
-            If you do not have an account, Sign Up here
+            If you do not have an account, <Text style={styles.link} onPress={() => {
+                navigation.navigate('signup')
+            }}> Sign Up here
+            </Text>
         </Text>
       </View>
   );
@@ -70,7 +76,11 @@ const styles = StyleSheet.create({
       },
       subtitle: {
         fontSize: 12,
-        alignSelf: 'center'
+        alignSelf: 'center',
+      },
+      link: {
+        fontSize: 12,
+        color: 'blue',
       }
   });
   
