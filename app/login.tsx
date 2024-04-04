@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useEffect, useState } from 'react';
 import { Text, View, StyleSheet, TextInput, Keyboard, TouchableOpacity, TouchableHighlight } from 'react-native';
+import signUp from './signUp';
 import { useNavigation } from '@react-navigation/native';
 
 interface loginProps {}
@@ -24,7 +25,11 @@ const login = (props: loginProps) => {
             onChangeText={onChangeEmailText}
             value={emailText}
         /> 
-
+        {/* 
+        
+        handle errors for email and password validation
+        
+        */}
 
         <TextInput
             style={styles.input}
@@ -33,20 +38,21 @@ const login = (props: loginProps) => {
             value={passwordText}
         />
 
-        {/* 
-        
-        handle errors for email and password validation
-        
-        */}
-        
         <TouchableOpacity style={styles.button}>
             <Text>Submit</Text>
         </TouchableOpacity>
 
         <Text style={styles.subtitle}>
-            If you do not have an account, <Text style={styles.link} onPress={() => {
-                navigation.navigate('signup')
+            If you do not have an account,<Text style={styles.link} onPress={() => {
+                navigation.navigate('signUp')
             }}> Sign Up here
+            </Text>
+        </Text>
+
+        <Text style={styles.subtitle}>
+            Reset password<Text style={styles.resetPassword} onPress={() => {
+                navigation.navigate('resetPassword')
+            }}> here
             </Text>
         </Text>
       </View>
@@ -81,6 +87,10 @@ const styles = StyleSheet.create({
       link: {
         fontSize: 12,
         color: 'blue',
+      },
+      resetPassword: {
+        fontSize: 12,
+        color: 'red',
       }
   });
   
