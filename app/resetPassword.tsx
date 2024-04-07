@@ -12,29 +12,25 @@ import {
 import signUp from "./signUp";
 import { useNavigation } from "@react-navigation/native";
 
-interface loginProps {}
-
-const login = (props: loginProps) => {
+const resetPassword = () => {
   const navigation = useNavigation();
-  const [emailText, onChangeEmailText] = React.useState("");
   const [passwordText, onChangePasswordText] = React.useState("");
 
   return (
     <View>
-      <Text style={styles.heading}>Log In</Text>
-
-      <TextInput
-        style={styles.input}
-        placeholder="Email"
-        onSubmitEditing={Keyboard.dismiss}
-        onChangeText={onChangeEmailText}
-        value={emailText}
-      />
+      <Text style={styles.heading}>Reset Password</Text>
       {/* 
         
         handle errors for email and password validation
         
         */}
+
+      <TextInput
+        style={styles.input}
+        placeholder="Password"
+        onChangeText={onChangePasswordText}
+        value={passwordText}
+      />
 
       <TextInput
         style={styles.input}
@@ -76,7 +72,7 @@ const login = (props: loginProps) => {
   );
 };
 
-export default login;
+export default resetPassword;
 
 const styles = StyleSheet.create({
   heading: {
