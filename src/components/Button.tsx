@@ -2,11 +2,14 @@ import React from 'react';
 import {StyleSheet, View, Pressable, Text} from 'react-native';
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 
+interface ButtonProps {
+  label: string,
+  theme?: string
+}
 
-// @ts-ignore
-export default function Button({ label, theme }) {
+
+export const Button = ({label, theme}: ButtonProps) => {
   if (theme === "primary") {
-    // @ts-ignore
     return (
       <View style={[styles.buttonContainer, { borderWidth: 4, borderColor: "#ffd33d", borderRadius: 18 }]}>
         <Pressable
