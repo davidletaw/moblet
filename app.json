@@ -1,4 +1,4 @@
- {
+{
   "expo": {
     "name": "moblet",
     "slug": "moblet",
@@ -15,7 +15,8 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.anonymous.moblet"
     },
     "android": {
       "adaptiveIcon": {
