@@ -1,14 +1,26 @@
 import {StatusBar} from 'expo-status-bar';
-import {Alert, Image, SafeAreaView, StyleSheet, Text, TextInput, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import {registerRootComponent} from 'expo';
-import {useState} from "react";
 import {Button} from "./components/Button";
 import ImageViewer from "./components/ImageViewer";
+import * as ImagePicker from 'expo-image-picker';
 
 const PlaceholderImage = require('./assets/images/background-image.png')
 
 export const App = () => {
-  const [text, setText] = useState('')
+  const pickImageAsync = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      allowsEditing: true,
+      quality: 1
+    });
+
+    if (!result.canceled) {
+      console.log(result)
+    } else {
+      // @ts-ignore
+      alert('You did not select an image.')
+    }
+  }
 
   return (
     <View style={styles.container}>
@@ -16,8 +28,8 @@ export const App = () => {
         <ImageViewer placeholderImageSource={PlaceholderImage} />
       </View>
       <View style={styles.footerContainer}>
-        <Button theme='primary' label='Choose a photo'/>
-        <Button label='Use this photo'/>
+        <Button theme='primary' label='Choose a photo' onPress={pickImageAsync}/>
+        <Button label='Use this photo' />
       </View>
       <StatusBar style="auto"/>
     </View>
